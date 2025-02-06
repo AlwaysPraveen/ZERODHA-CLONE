@@ -1,0 +1,201 @@
+:root {
+    padding: 2rem;
+}
+.signup_btn {
+    width: 20%;
+    margin: 0 auto;
+    background-color:  #387ED1;
+}
+.signup_btn:hover {
+    background-color: black;
+}
+.home_list {
+    margin: 8% 0;
+}
+.logo{
+    width: 25%;
+}
+
+/* Navbar related styling */
+
+.navbar {
+    height: 2rem;
+}
+.nav-link {
+    margin-left: 1.5rem;
+}
+/* footer related styling */
+
+.footer-head {
+    color: #424242;
+}
+.footer-list:hover{
+    color: #387ED1 !important;
+}
+.footer-para {
+    font-size: small;
+}
+.footer-para a{
+    text-decoration: none;
+    color: #387ED1;
+}
+.footer-para a:hover{
+    color: #424242;
+}
+.footer-graveyard-links ul li{
+    display: inline;
+    font-size: .8rem;
+    margin-right: 20px;
+}
+.footer-graveyard-links ul li a{
+    font-weight: 600;
+    color: #9b9b9b;
+    text-decoration: none;
+}
+.footer-graveyard-links ul li a:hover{
+    color: #387ed1;
+}
+
+/* For Similer Anchor Tags */
+a {
+    text-decoration: none;
+    color: #387ED1;
+}
+a:hover{
+    color: #424242;
+}
+
+/* About page */
+
+.about-heading{
+    color: #424242;
+    line-height: 1.5;
+}
+.about-para {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.about-heading-crew{
+    margin-top: -4rem;
+}
+.about-people {
+    margin-top: -6rem;
+}
+.about-people-img{
+    border-radius: 100%;
+    width: 70%;
+}
+
+/* Products Page */
+
+.product-heading {
+    font-size: 2.75rem;
+    line-height: 1.25;
+}
+.product-subheading {
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin-top: 10px;
+}
+.product-para {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+.product-head{
+    margin-top: 4rem !important;
+    padding: 5rem !important; 
+    color: #424242;
+}
+.left-section {
+    margin-top: 6.5rem !important;
+    color: #424242;
+}
+.left-para {
+    margin-top: -1rem;
+    font-size: 1.07rem;
+}
+.left-tag {
+    font-weight: 500;
+    font-size: 16px;
+}
+.right-section{
+    margin-top: 6.5rem !important;
+    color: #424242;
+    
+}
+.right-img{
+    padding-top: -3rem;
+}
+
+.right-head {
+    padding-top: 6rem !important;
+}
+
+.products-down{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.img-para {
+    font-size: .75rem;
+    color: #9b9b9b;
+}
+.product-down-heading{
+    color: #424242;
+    font-size: 1.25rem;
+    font-weight: 400;
+    margin: 6rem 0;
+    line-height: 1.8rem;
+}
+.price-low-head {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #424242;
+    font-weight: 400;
+}
+.price-low-para {
+    line-height: 1.8;
+    font-size: .75rem;
+    color: #424242;
+}
+
+/* Support Page */
+
+.support-anchor{
+    color: #222;
+    font-weight: 400;
+}
+.support-anchor:hover{
+    color: #387ED1;
+}
+.support-sub-anchor{
+    line-height: 2rem;
+    margin-left: 1.5rem;
+}
+.support-hero{
+    background-color: #387ED1;
+    color: #fff !important; 
+}
+.support-subhead{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 1.5;
+}
+.typeahead{
+    height: 3rem;
+    margin: auto;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    
+    background: #fff;
+    border-radius: 2px;
+}
+.super-links .quick-links{
+    display: inline-block !important;
+}
