@@ -1,26 +1,40 @@
-import axios from "axios";
+import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 export const useAuth = () => {
-    const [cookies] = useCookies(["authToken"]);  // Read authToken cookie
+    const [cookies] = useCookies(["authToken"]);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-    const checkAuth = async () => {
-        if (!cookies.authToken) {
-            return null; // No token found
-        }
+    useEffect(() => {
+        const verifyUser = async () => {
+            if (!cookies.authToken) {
+                setUser(null);
+                setLoading(false);
+                return;
+            }
 
-        try {
-            const response = await axios.get("http://localhost:8080/api/auth/verify", {
-                withCredentials: true,  // Send cookies in request
-            });
-            console.log("Auth response:", response.data);
-            return response.data.user; // Returns user details if authenticated
-        } catch (error) {
-            console.error("Authentication failed:", error.response?.data || error.message);
-            return null;
-        }
-    };
+            try {
+                const response = await axios.get("http://localhost:8080/api/auth/verify", {
+                    withCredentials: true, // Ensure cookies are sent with request
+                });
 
-    return { checkAuth };
+                if (response.data.status) {
+                    setUser(response.data.user);
+                } else {
+                    setUser(null);
+                }
+            } catch (error) {
+                console.error("Authentication failed:", error.response?.data || error.message);
+                setUser(null);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        verifyUser();
+    }, [cookies.authToken]); // Runs whenever authToken changes
+
+    return { user, loading };
 };
-

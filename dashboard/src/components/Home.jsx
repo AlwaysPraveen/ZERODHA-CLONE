@@ -1,13 +1,14 @@
 import React from "react";
-
-import Dashboard from "./Dashboard";
+import { Outlet } from "react-router-dom";
 import TopBar from "./TopBar";
+import Dashboard from "./Dashboard";
 
 const Home = () => {
   return (
     <>
       <TopBar />
       <Dashboard />
+      {/*  This is where the dynamic content will load */}
     </>
   );
 };

@@ -3,14 +3,14 @@ const jwt = require("jsonwebtoken");
 
 module.exports.userVerification = async (req, res) => {
   try {
-    const token = req.cookies.authToken; // ✅ Ensure correct cookie key
+    const token = req.cookies.authToken; //  Ensure correct cookie key
     if (!token) {
       return res.status(401).json({ status: false, message: "No token provided" });
     }
 
     const decoded = jwt.verify(token, process.env.TOKEN_KEY);
     const user = await User.findById(decoded.id);
-    
+    console.log(user);
     if (!user) {
       return res.status(404).json({ status: false, message: "User not found" });
     }

@@ -27,6 +27,7 @@ const Menu = () => {
   
       // ✅ Redirect to login page
       window.location.href = "http://localhost:5173/signup";  
+      
     } catch (error) {
       console.error("Logout failed:", error.response?.data || error.message);
     }

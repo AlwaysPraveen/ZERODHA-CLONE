@@ -1,14 +1,12 @@
 import { Navigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { useAuth } from "./Auth";
 
 const ProtectedRoute = ({ children }) => {
-  const [cookies] = useCookies(["authToken"]);
+    const { user, loading } = useAuth();
 
-  if (!cookies.authToken) {
-    return <Navigate to="http://localhost:5173/signup" replace />;
-  }
+    if (loading) return <p>Loading...</p>; // Prevent unauthorized flashes
 
-  return children;
+    return user ? children : window.location.href = "http://localhost:5173/signup";
 };
 
 export default ProtectedRoute;
