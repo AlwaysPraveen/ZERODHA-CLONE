@@ -4,48 +4,72 @@ const bcrypt = require("bcryptjs");
 
 module.exports.Signup = async (req, res, next) => {
   try {
-    const { fullName, email, password,  createdAt } = req.body;
+    const { fullName, email, password, createdAt } = req.body;
     const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.json({ message: "User already exists" });
+
+    if (!password || password.length < 6) {
+      return res.status(400).json({ message: "Password must be at least 6 characters long" });
     }
-    const user = await User.create({ fullName, email, password,  createdAt });
+
+    if (existingUser) {
+      return res.status(409).json({ message: "User already exists" }); // Use 409 instead of 200
+    }
+
+    const user = await User.create({ fullName, email, password, createdAt });
     const token = createSecretToken(user._id);
+
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
     });
-    res
+
+    return res
       .status(201)
       .json({ message: "User signed in successfully", success: true, user });
-    next();
+
   } catch (error) {
     console.error(error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
 module.exports.Login = async (req, res, next) => {
-    try {
+  try {
       const { email, password } = req.body;
-      if(!email || !password ){
-        return res.json({message:'All fields are required'})
+
+      // Validate input fields (all fields are required)
+      if (!email || !password) {
+          return res.status(400).json({ message: 'All fields are required', success: false });
       }
+
+      // Check if user exists or not
       const user = await User.findOne({ email });
-      if(!user){
-        return res.json({message:'Incorrect password or email' }) 
+      if (!user) {
+          return res.status(401).json({ message: 'Incorrect email or password', success: false });
       }
-      const auth = await bcrypt.compare(password,user.password)
+
+      // Validating password
+      const auth = await bcrypt.compare(password, user.password);
       if (!auth) {
-        return res.json({message:'Incorrect password or email' }) 
+          return res.status(401).json({ message: 'Incorrect email or password', success: false });
       }
-       const token = createSecretToken(user._id);
-       res.cookie("authToken", token, {
-         withCredentials: true,
-         httpOnly: false,
-       });
-       res.status(201).json({ message: "User logged in successfully", success: true });
-       next()
-    } catch (error) {
-      console.error(error);
-    }
-}
+
+      // Generating token
+      const token = createSecretToken(user._id);
+
+      // Set cookie
+      res.cookie("authToken", token, {
+          httpOnly: false, // Secure the cookie
+          sameSite: "Strict", // Prevent CSRF attacks
+          withCredentials: true,
+      });
+
+      // Send success response
+      res.status(200).json({ message: "User logged in successfully", success: true });
+
+      next();
+  } catch (error) {
+      console.error("Login Error:", error);
+      res.status(500).json({ message: "Internal server error", success: false });
+  }
+};

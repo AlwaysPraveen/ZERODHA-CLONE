@@ -3,56 +3,55 @@ import { useState } from 'react';
 import {Link} from 'react-router-dom'
 import Register from './register';
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   
+  const handleError = (err) =>
+    toast.error(err, {
+      position: "bottom-left",
+    });
+  const handleSuccess = (msg) =>
+    toast.success(msg, {
+      position: "bottom-left",
+    });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { email, password };
     console.log(formData);
     
-    // try {
-    //   const response = await fetch("http://your-backend-url/api/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(formData),
-    //   });
-    //   const data = await response.json();
-    //   console.log("Login Success:", data);
-    // } catch (error) {
-    //   console.error("Login Error:", error);
-    // }
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/auth/login",
-        formData,
-        { withCredentials: true } // Enable cookies
-      );
-  
+    axios.post("http://localhost:8080/api/auth/login", formData, { withCredentials: true }) // Enable cookies
+    .then(response => {
       console.log("Login response:", response);
-  
+
       // Since token is in cookies, manually retrieve it
       const token = document.cookie
         .split("; ")
-        .find((row) => row.startsWith("authToken="))
+        .find(row => row.startsWith("authToken="))
         ?.split("=")[1];
-  
+
       if (token) {
         localStorage.setItem("authToken", token);
         console.log("Token stored:", token);
-        // window.location.href = "/dashboard";
+        setTimeout(() => {
+          window.location.href = "http://localhost:5174/";
+        }, 3000);
       } else {
         console.error("Token not found in cookies");
       }
-    } catch (error) {
+      handleSuccess(response);
+    })
+    .catch(error => {
       console.error("Login error:", error.response?.data || error.message);
-    }
+      handleError(error.response?.data.message);
+    });
+
+    setEmail('');
+    setPassword('')
   };
 
   return (
@@ -103,6 +102,7 @@ const Signup = () => {
               <p className="text-center mt-3">
                 Don't have an account? <Link to="/register" style={{ color: "#387ED1" }}>Register</Link>
               </p>
+              <ToastContainer/>
             </div>
           </div>
         </div>

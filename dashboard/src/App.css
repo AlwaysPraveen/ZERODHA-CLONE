@@ -324,6 +324,21 @@ hr {
   font-weight: 300;
 }
 
+.dropdown-menu {
+  display: block;
+  min-width: 150px;
+  background: white;
+}
+
+.dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: rgb(198, 189, 185);;
+}
+
 /* sudo selectors */
 
 .menu:hover {

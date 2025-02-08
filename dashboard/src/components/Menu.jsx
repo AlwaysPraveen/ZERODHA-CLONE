@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import axios from 'axios';
 
 const Menu = () => {
   const [selectedMenu,setSelectedMenu] = useState(0);
@@ -14,6 +16,21 @@ const Menu = () => {
     setIsProfileDropDownOpen(!isProfileDropDownOpen);
   }
 
+  const [, , removeCookie] = useCookies(["authToken"]); // Use react-cookie to remove token
+  
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:8080/api/auth/logout", {}, { withCredentials: true });
+  
+      // ✅ Remove the authToken cookie
+      removeCookie("authToken", { path: "/", sameSite: "lax" });
+  
+      // ✅ Redirect to login page
+      window.location.href = "http://localhost:5173/signup";  
+    } catch (error) {
+      console.error("Logout failed:", error.response?.data || error.message);
+    }
+  }
   const menuClass = "menu";
   const activeMenuClass = "menu selected"
   return (
@@ -53,9 +70,19 @@ const Menu = () => {
           </li>
         </ul>
         <hr />
-        <div className="profile" onClick={handleProfileClick}>
-          <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
+        <div className="position-relative">
+          <div className="profile" onClick={handleProfileClick}>
+            <div className="avatar">ZU</div>
+            <p className="username">USERID</p>
+          </div>
+
+          {isProfileDropDownOpen && (
+            <div className="dropdown-menu show position-absolute end-0 mt-2 shadow-sm border rounded">
+              <a className="dropdown-item" href="#">Option 1</a>
+              <a className="dropdown-item" href="#">Option 2</a>
+              <a className="dropdown-item text-danger" onClick={handleLogout}>Logout</a>
+            </div>
+          )}
         </div>
       </div>
     </div>

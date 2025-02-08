@@ -1,7 +1,8 @@
-import ReactDOM from "react-dom/client";
+
 import { BrowserRouter, Route, Routes } from "react-router-dom"; 
 import Home from "./components/Home";
 import './App.css'
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
  
@@ -9,7 +10,14 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/*" element={<Home />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
         </Routes>
       </BrowserRouter>
     </>

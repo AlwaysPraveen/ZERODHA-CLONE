@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios';
+import { ToastContainer, toast } from "react-toastify";
 
 
 const Register = () => {
@@ -13,6 +14,16 @@ const Register = () => {
   const [userType] = useState("customer");
 
   const [errors, setErrors] = useState({});
+
+  const handleError = (err) =>
+    toast.error(err, {
+      position: "bottom-left",
+  });
+  const handleSuccess = (msg) =>
+    toast.success(msg, {
+      position: "bottom-right",
+  });
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,18 +45,22 @@ const Register = () => {
     // }
     axios
     .post('http://localhost:8080/api/auth/signup',formData, {
+      withCredentials: true ,
       headers: {
         'Content-Type': 'application/json', // Ensure data is sent as JSON
       },
+      
     })
     .then((response) => {
       // Handle success
+      handleSuccess('Signup successful');
       console.log('Signup successful:', response.data);
       setResponseMessage('Signup successful!');
       localStorage.setItem('user',JSON.stringify(response.data));
     })
     .catch((error) => {
       // Handle errors
+      handleError(error.response?.data?.message);
       console.error('Error during signup:', error.response?.data || error.message);
       setResponseMessage(
         error.response?.data?.message || 'Something went wrong. Please try again.'
@@ -109,6 +124,7 @@ const Register = () => {
                   Register
                 </button>
               </form>
+              <ToastContainer/>
             </div>
           </div>
         </div>

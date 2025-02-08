@@ -14,6 +14,7 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: [true, "Your password is required"],
+        minlength: [6, "Password must be at least 6 characters long"], // <-- Add minlength validation
     },
     userType: {
         type: String,
