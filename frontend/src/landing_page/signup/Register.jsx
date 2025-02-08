@@ -66,6 +66,9 @@ const Register = () => {
         error.response?.data?.message || 'Something went wrong. Please try again.'
       );
     })
+    setTimeout(() => {
+      window.location.href= "http://localhost:5173/signup";
+    },3000);
   };
 
   return (

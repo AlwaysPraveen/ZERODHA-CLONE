@@ -15,7 +15,13 @@ module.exports.userVerification = async (req, res) => {
       return res.status(404).json({ status: false, message: "User not found" });
     }
 
-    return res.status(200).json({ status: true, user: user.fullName });
+    res.status(200).json({
+      status: true,
+      user: {
+        fullName: user.fullName, 
+        email: user.email,
+      },
+    });
   } catch (error) {
     console.error("User verification error:", error);
 

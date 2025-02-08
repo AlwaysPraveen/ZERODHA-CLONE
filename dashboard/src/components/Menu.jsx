@@ -4,7 +4,11 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from 'axios';
 
+import { useAuth } from "../context/AuthContext";
+
+
 const Menu = () => {
+  const { user } = useAuth();
   const [selectedMenu,setSelectedMenu] = useState(0);
   const [isProfileDropDownOpen,setIsProfileDropDownOpen] = useState(false);
 
@@ -22,10 +26,10 @@ const Menu = () => {
     try {
       await axios.post("http://localhost:8080/api/auth/logout", {}, { withCredentials: true });
   
-      // ✅ Remove the authToken cookie
+      //  Remove the authToken cookie
       removeCookie("authToken", { path: "/", sameSite: "lax" });
   
-      // ✅ Redirect to login page
+      //  Redirect to login page
       window.location.href = "http://localhost:5173/signup";  
       
     } catch (error) {
@@ -74,7 +78,7 @@ const Menu = () => {
         <div className="position-relative">
           <div className="profile" onClick={handleProfileClick}>
             <div className="avatar">ZU</div>
-            <p className="username">USERID</p>
+            <p className="username">{user && user.fullName ? user.fullName : "Guest"}</p>
           </div>
 
           {isProfileDropDownOpen && (
