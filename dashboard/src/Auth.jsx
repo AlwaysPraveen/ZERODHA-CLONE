@@ -16,7 +16,7 @@ export const useAuth = () => {
             }
 
             try {
-                const response = await axios.get("http://localhost:8080/api/auth/verify", {
+                const response = await axios.get("https://zerodha-clone-6rsc.onrender.com/api/auth/verify", {
                     withCredentials: true, // Ensure cookies are sent with request
                 });
 

@@ -24,7 +24,7 @@ const Signup = () => {
     const formData = { email, password };
     console.log(formData);
     
-    axios.post("https://zerodha-clone-bpnu.onrender.com/api/auth/login", formData, { withCredentials: true }) // Enable cookies
+    axios.post("https://zerodha-clone-6rsc.onrender.com/api/auth/login", formData, { withCredentials: true }) // Enable cookies
     .then(response => {
       console.log("Login response:", response);
 
@@ -38,7 +38,7 @@ const Signup = () => {
         localStorage.setItem("authToken", token);
         console.log("Token stored:", token);
         setTimeout(() => {
-          window.location.href = "http://localhost:5174/";
+          window.location.href = "https://frontend-o4jx5vcz3-praveen-kumars-projects-de5fd3b2.vercel.app/signup";
         }, 3000);
       } else {
         console.error("Token not found in cookies");

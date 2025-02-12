@@ -22,7 +22,7 @@ const Orders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/allOrders")
+    axios.get("https://zerodha-clone-6rsc.onrender.com/allOrders")
       .then((res) => {
         console.log(res.data);
         setAllOrders(res.data);

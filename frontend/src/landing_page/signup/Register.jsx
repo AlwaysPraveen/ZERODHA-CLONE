@@ -44,7 +44,7 @@ const Register = () => {
     //   console.error("Login Error:", error);
     // }
     axios
-    .post('https://zerodha-clone-bpnu.onrender.com/api/auth/signup',formData, {
+    .post('https://zerodha-clone-6rsc.onrender.com/api/auth/signup',formData, {
       withCredentials: true ,
       headers: {
         'Content-Type': 'application/json', // Ensure data is sent as JSON
@@ -67,7 +67,7 @@ const Register = () => {
       );
     })
     setTimeout(() => {
-      window.location.href= "http://localhost:5173/signup";
+      window.location.href= "https://frontend-o4jx5vcz3-praveen-kumars-projects-de5fd3b2.vercel.app/signup";
     },3000);
   };
 

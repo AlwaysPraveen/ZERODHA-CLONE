@@ -24,13 +24,13 @@ const Menu = () => {
   
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8080/api/auth/logout", {}, { withCredentials: true });
+      await axios.post("https://zerodha-clone-6rsc.onrender.com/api/auth/logout", {}, { withCredentials: true });
   
       //  Remove the authToken cookie
       removeCookie("authToken", { path: "/", sameSite: "lax" });
   
       //  Redirect to login page
-      window.location.href = "http://localhost:5173/signup";  
+      window.location.href = "https://frontend-o4jx5vcz3-praveen-kumars-projects-de5fd3b2.vercel.app/signup";  
       
     } catch (error) {
       console.error("Logout failed:", error.response?.data || error.message);
