@@ -60,8 +60,10 @@ module.exports.Login = async (req, res, next) => {
       // Set cookie
       res.cookie("authToken", token, {
         httpOnly: true, //  Make cookies HTTP-only for security
-        secure: true,   //  Required for HTTPS (Render uses HTTPS)
+        secure: true,   //  Required for HTTPS 
         sameSite: "None",
+        domain: ".onrender.com", //  Required for cross-domain cookies
+        path: "/",        //  Ensure cookie is available for all routes
       });
 
       // Send success response

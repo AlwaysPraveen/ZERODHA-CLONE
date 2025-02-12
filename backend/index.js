@@ -32,6 +32,9 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],  // Allow headers
 }));
 
+//Fix for preflight requests
+app.options("*", cors());
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
