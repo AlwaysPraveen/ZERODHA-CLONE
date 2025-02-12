@@ -5,7 +5,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './App.css'
 import HomePage from './landing_page/home/HomePage'
 import Signup from './landing_page/signup/Signup';
-import Register from './landing_page/signup/register';
+import Register from './landing_page/signup/Register';
 import AboutPage from './landing_page/about/AboutPage';
 import ProductPage from './landing_page/products/ProductPage';
 import PricingPage from './landing_page/pricing/PricingPage';

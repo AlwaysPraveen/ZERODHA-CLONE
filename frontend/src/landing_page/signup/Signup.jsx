@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import {Link} from 'react-router-dom'
-import Register from './register';
+import Register from './Register';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 
