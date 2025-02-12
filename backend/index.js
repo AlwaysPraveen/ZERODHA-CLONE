@@ -12,18 +12,27 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRoute = require('./Routes/AuthRoute');
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "https://frontend-blond-five-45.vercel.app/", "https://zerodha-clone-praveen-kumars-projects-de5fd3b2.vercel.app/"];
+const cors = require("cors");
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://frontend-blond-five-45.vercel.app",
+  "https://zerodha-clone-praveen-kumars-projects-de5fd3b2.vercel.app"
+];
 
 app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Allow sending cookies
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,  // Allow cookies
+  methods: ["GET", "POST", "PUT", "DELETE"],  // Allow these methods
+  allowedHeaders: ["Content-Type", "Authorization"],  // Allow headers
 }));
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 
