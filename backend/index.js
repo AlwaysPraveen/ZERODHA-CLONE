@@ -12,7 +12,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRoute = require('./Routes/AuthRoute');
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "https://frontend-er7jqb59y-praveen-kumars-projects-de5fd3b2.vercel.app", "https://zerodha-clone-o7rrcdv39-praveen-kumars-projects-de5fd3b2.vercel.app"];
+const allowedOrigins = ["http://localhost:5173", "http://localhost:5174", "https://frontend-blond-five-45.vercel.app/", "https://zerodha-clone-praveen-kumars-projects-de5fd3b2.vercel.app/"];
 
 app.use(cors({
     origin: function (origin, callback) {
