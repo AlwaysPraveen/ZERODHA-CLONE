@@ -44,7 +44,7 @@ const Register = () => {
     //   console.error("Login Error:", error);
     // }
     axios
-    .post('http://localhost:8080/api/auth/signup',formData, {
+    .post('https://zerodha-clone-bpnu.onrender.com/api/auth/signup',formData, {
       withCredentials: true ,
       headers: {
         'Content-Type': 'application/json', // Ensure data is sent as JSON

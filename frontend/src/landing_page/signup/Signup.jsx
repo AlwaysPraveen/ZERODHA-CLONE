@@ -24,7 +24,7 @@ const Signup = () => {
     const formData = { email, password };
     console.log(formData);
     
-    axios.post("http://localhost:8080/api/auth/login", formData, { withCredentials: true }) // Enable cookies
+    axios.post("https://zerodha-clone-bpnu.onrender.com/api/auth/login", formData, { withCredentials: true }) // Enable cookies
     .then(response => {
       console.log("Login response:", response);
 

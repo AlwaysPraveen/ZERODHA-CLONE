@@ -20,7 +20,7 @@ module.exports.Signup = async (req, res, next) => {
 
     res.cookie("token", token, {
       withCredentials: true,
-      httpOnly: false,
+      httpOnly: true,
     });
 
     return res
@@ -59,9 +59,9 @@ module.exports.Login = async (req, res, next) => {
 
       // Set cookie
       res.cookie("authToken", token, {
-          httpOnly: false, // Secure the cookie
-          sameSite: "Strict", // Prevent CSRF attacks
-          withCredentials: true,
+        httpOnly: true, //  Make cookies HTTP-only for security
+        secure: true,   //  Required for HTTPS (Render uses HTTPS)
+        sameSite: "None",
       });
 
       // Send success response

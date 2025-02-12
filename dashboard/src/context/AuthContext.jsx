@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     const verifyUser = async () => {
       try {
         if (cookies.authToken) {
-          const response = await axios.get("http://localhost:8080/api/auth/verify", {
+          const response = await axios.get("https://zerodha-clone-bpnu.onrender.com/api/auth/verify", {
             withCredentials: true,
           });
           if (response.data.status) {
