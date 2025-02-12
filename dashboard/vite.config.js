@@ -1,18 +1,18 @@
-import { defineConfig } from 'vite';
+import { defineConfig } from 'vite'; 
 import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
   server: {
     open: true,
-    port: 5174, // Ensure this is correct
+    port: 5174,
     proxy: {
       "/api": {
-        target: "http://localhost:8080", // Your backend
+        target: "https://zerodha-clone-bpnu.onrender.com", // ✅ Deployed backend
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
-    cors: true, // Allow requests from different origins
+    cors: true,
   },
 });
