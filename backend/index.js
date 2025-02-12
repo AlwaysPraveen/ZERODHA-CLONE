@@ -12,7 +12,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const authRoute = require('./Routes/AuthRoute');
 
-const cors = require("cors");
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
