@@ -67,7 +67,7 @@ const Register = () => {
       );
     })
     setTimeout(() => {
-      window.location.href= "https://frontend-o4jx5vcz3-praveen-kumars-projects-de5fd3b2.vercel.app/signup";
+      window.location.href= "https://frontend-blond-five-45.vercel.app/signup";
     },3000);
   };
 
