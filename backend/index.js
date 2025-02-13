@@ -16,7 +16,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   "https://zerodha-clone-2-dyji.onrender.com/signup",
-  "https://zerodha-clone-praveen-kumars-projects-de5fd3b2.vercel.app"
+  "https://zerodha-clone-3-x201.onrender.com"
 ];
 
 app.use(cors({
