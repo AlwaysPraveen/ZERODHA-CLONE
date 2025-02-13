@@ -67,7 +67,7 @@ const Register = () => {
       );
     })
     setTimeout(() => {
-      window.location.href= "https://frontend-blond-five-45.vercel.app/signup";
+      window.location.href= "https://zerodha-clone-2-dyji.onrender.com/signup";
     },3000);
   };
 

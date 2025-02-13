@@ -38,7 +38,7 @@ const Signup = () => {
         localStorage.setItem("authToken", token);
         console.log("Token stored:", token);
         setTimeout(() => {
-          window.location.href = "https://frontend-blond-five-45.vercel.app/signup";
+          window.location.href = "https://zerodha-clone-2-dyji.onrender.com/about";
         }, 3000);
       } else {
         console.error("Token not found in cookies");

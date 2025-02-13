@@ -15,7 +15,7 @@ const authRoute = require('./Routes/AuthRoute');
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
-  "https://frontend-blond-five-45.vercel.app",
+  "https://zerodha-clone-2-dyji.onrender.com/signup",
   "https://zerodha-clone-praveen-kumars-projects-de5fd3b2.vercel.app"
 ];
 

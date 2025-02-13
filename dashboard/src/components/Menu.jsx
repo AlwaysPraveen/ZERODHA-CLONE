@@ -30,7 +30,7 @@ const Menu = () => {
       removeCookie("authToken", { path: "/", sameSite: "lax" });
   
       //  Redirect to login page
-      window.location.href = "https://frontend-blond-five-45.vercel.app/signup";  
+      window.location.href = "https://zerodha-clone-2-dyji.onrender.com/signup";  
       
     } catch (error) {
       console.error("Logout failed:", error.response?.data || error.message);

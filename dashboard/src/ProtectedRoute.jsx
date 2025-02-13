@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children }) => {
 
     if (loading) return <p>Loading...</p>; // Prevent unauthorized flashes
 
-    return user ? children : window.location.href = "https://frontend-blond-five-45.vercel.app/signup";
+    return user ? children : window.location.href = "https://zerodha-clone-2-dyji.onrender.com/signup";
 };
 
 export default ProtectedRoute;
