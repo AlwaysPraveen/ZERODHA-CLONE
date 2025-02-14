@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
 import axios from "axios";
 
 // Create context
@@ -8,28 +7,31 @@ const AuthContext = createContext();
 // AuthProvider component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null); // Store user info
-  const [cookies] = useCookies(["authToken"]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
     const verifyUser = async () => {
       try {
-        if (cookies.authToken) {
-          const response = await axios.get("https://zerodha-clone-6rsc.onrender.com/api/auth/verify", {
-            withCredentials: true,
-          });
-          if (response.data.status) {
-            setUser(response.data.user); // Set user data
-          }
+        const response = await axios.get("https://zerodha-clone-6rsc.onrender.com/api/auth/verify", {
+          withCredentials: true, // Automatically sends HttpOnly cookies
+        });
+        if (response.data.status) {
+          setUser(response.data.user); // Set user data
+        } else {
+          setUser(null);
         }
       } catch (error) {
         console.error("Error verifying user:", error);
         setUser(null);
+      } finally {
+        setLoading(false);
       }
     };
-    verifyUser();
-  }, [cookies.authToken]); // Run when token changes
 
-  return <AuthContext.Provider value={{ user, setUser }}>{children}</AuthContext.Provider>;
+    verifyUser();
+  }, []); // Run only once when component mounts
+
+  return <AuthContext.Provider value={{ user, setUser, loading }}>{children}</AuthContext.Provider>;
 };
 
 // Hook for easy usage (to use easily)

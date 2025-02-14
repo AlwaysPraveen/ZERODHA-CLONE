@@ -17,43 +17,32 @@ const Signup = () => {
   const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "bottom-left",
-    });
+  });
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    const formData = { email, password };
-    console.log(formData);
+      e.preventDefault();
+      const formData = { email, password };
+      
+      axios.post("https://zerodha-clone-6rsc.onrender.com/api/auth/login", formData, { withCredentials: true })
+        .then(response => {
+          console.log("Login response:", response);
     
-    axios.post("https://zerodha-clone-6rsc.onrender.com/api/auth/login", formData, { withCredentials: true }) // Enable cookies
-    .then(response => {
-      console.log("Login response:", response);
-
-      // Since token is in cookies, manually retrieve it
-      const token = document.cookie
-        .split("; ")
-        .find(row => row.startsWith("authToken="))
-        ?.split("=")[1];
-
-      if (token) {
-        localStorage.setItem("authToken", token);
-        console.log("Token stored:", token);
-        setTimeout(() => {
-          window.location.href = "https://zerodha-clone-2-dyji.onrender.com/about";
-        }, 3000);
-      } else {
-        console.error("Token not found in cookies");
-      }
-      handleSuccess(response);
-    })
-    .catch(error => {
-      console.error("Login error:", error.response?.data || error.message);
-      handleError(error.response?.data.message);
-    });
-
-    setEmail('');
-    setPassword('')
+          //  Redirect to dashboard (No need to manually extract token)
+          setTimeout(() => {
+            window.location.href = "https://zerodha-clone-3-x201.onrender.com";
+          }, 3000);
+    
+          handleSuccess(response);
+        })
+        .catch(error => {
+          console.error("Login error:", error.response?.data || error.message);
+          handleError(error.response?.data.message);
+        });
+    
+      setEmail('');
+      setPassword('');
   };
-
+    
   return (
     <div className="container p-5 ">
         <div className="row  ">
