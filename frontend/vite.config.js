@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://zerodha-clone-bpnu.onrender.com",
+        target: "https://zerodha-clone-6rsc.onrender.com",
         changeOrigin: true,
         secure: true,
       },

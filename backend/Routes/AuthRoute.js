@@ -16,8 +16,8 @@ router.get("/verify", userVerification, (req, res) => {
 router.post("/logout", (req, res) => {
     res.clearCookie("authToken", {
       httpOnly: true,  
-      secure: false,  // Set `true` if using HTTPS
-      sameSite: "lax",
+      secure: true,  // Set `true` if using HTTPS
+      sameSite: "None",
       path: "/", // Ensure the cookie is cleared across all paths
     });
   

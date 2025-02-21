@@ -5,6 +5,7 @@ import Register from './Register';
 import axios from 'axios';
 import { ToastContainer, toast } from "react-toastify";
 
+
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -27,7 +27,7 @@ const Menu = () => {
       await axios.post("https://zerodha-clone-6rsc.onrender.com/api/auth/logout", {}, { withCredentials: true });
   
       //  Remove the authToken cookie
-      removeCookie("authToken", { path: "/", sameSite: "lax" });
+      removeCookie("authToken", { path: "/", sameSite: "None" });
   
       //  Redirect to login page
       window.location.href = "https://zerodha-clone-2-dyji.onrender.com/signup";  
