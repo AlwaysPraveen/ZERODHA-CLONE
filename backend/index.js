@@ -19,6 +19,9 @@ const allowedOrigins = [
   "https://zerodha-clone-3-x201.onrender.com"
 ];
 
+
+app.set("trust proxy", 1);
+
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
