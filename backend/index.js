@@ -34,9 +34,9 @@ app.use(cors({
 
 //Fix for preflight requests
 app.options("*", cors());
-
-app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(bodyParser.json());
+
 
 
 // app.get("/addholdings", async(req,res) => {

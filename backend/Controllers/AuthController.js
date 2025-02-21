@@ -58,13 +58,16 @@ module.exports.Login = async (req, res, next) => {
       const token = createSecretToken(user._id);
 
       // Set cookie
+      const isProduction = process.env.NODE_ENV === "production";
+
       res.cookie("authToken", token, {
-        httpOnly: true, //  Make cookies HTTP-only for security
-        secure: true,   //  Required for HTTPS 
-        sameSite: "None",
-        domain: ".onrender.com", //  Required for cross-domain cookies
-        path: "/",        //  Ensure cookie is available for all routes
+        httpOnly: true,
+        secure: isProduction,  // Only secure in production
+        sameSite: isProduction ? "None" : "Lax",  // 'None' for cross-origin, 'Lax' for localhost
+        domain: isProduction ? ".onrender.com" : undefined, // Only set in production
+        path: "/",
       });
+
 
       // Send success response
       res.status(200).json({ message: "User logged in successfully", success: true });
