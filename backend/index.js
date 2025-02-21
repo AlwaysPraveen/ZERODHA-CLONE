@@ -27,10 +27,12 @@ app.use(cors({
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,  // Allow cookies
-  methods: ["GET", "POST", "PUT", "DELETE"],  // Allow these methods
-  allowedHeaders: ["Content-Type", "Authorization"],  // Allow headers
+  credentials: true, //  Required to send cookies
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization", "x-csrf-token"],
+  exposedHeaders: ["set-cookie"] // Expose cookies in responses
 }));
+
 
 //Fix for preflight requests
 app.options("*", cors());
