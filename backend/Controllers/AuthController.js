@@ -19,7 +19,7 @@ module.exports.Signup = async (req, res, next) => {
     const token = createSecretToken(user._id);
 
     res.cookie("authToken", token, {
-      withCredentials: true,
+      // withCredentials: true,
       httpOnly: true,
     });
 
@@ -64,7 +64,7 @@ module.exports.Login = async (req, res, next) => {
         httpOnly: true,
         secure: isProduction,  // Only secure in production
         sameSite: isProduction ? "None" : "Lax",  // 'None' for cross-origin, 'Lax' for localhost
-        domain: isProduction ? ".onrender.com" : undefined, // Only set in production
+        // domain: isProduction ? ".onrender.com" : undefined, // Only set in production
         path: "/",
       });
 

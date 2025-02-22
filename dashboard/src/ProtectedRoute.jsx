@@ -7,9 +7,10 @@ const ProtectedRoute = ({ children }) => {
     if (loading) return <p>Loading...</p>; // Prevent unauthorized flashes
 
     if (!user) {
-        useEffect(() => {
-            window.location.href = "https://zerodha-clone-2-dyji.onrender.com/signup"; // Redirect to separate frontend (Login page is here dude)
-        }, []);
+        // useEffect(() => {
+        //     window.location.href = "https://zerodha-clone-2-dyji.onrender.com/signup"; // Redirect to separate frontend (Login page is here dude)
+        // }, []);
+        console.log("This User cannot access Dashboard");
         return null; // Prevent rendering anything before redirect
     }
 
